@@ -1,5 +1,5 @@
 const io = require("socket.io-client");
-const server = require("../config/socket");
+const { io: server } = require("../app");
 
 describe("Suite of unit tests", function() {
   server.attach(3010);
@@ -29,6 +29,7 @@ describe("Suite of unit tests", function() {
     }
     done();
   });
+
   afterAll(function(done) {
     socket.disconnect();
     server.close();
@@ -41,6 +42,7 @@ describe("Suite of unit tests", function() {
         name: "Udin",
         message: "Hello world",
       });
+
       socket.on("send-message", (payload) => {
         try {
           expect(payload).toHaveProperty("name");
