@@ -38,12 +38,12 @@ describe("Suite of unit tests", function() {
 
   describe("Chat tests", function() {
     test("should work", (done) => {
-      socket.emit("send-message", {
+      socket.emit("message:send", {
         name: "Udin",
         message: "Hello world",
       });
 
-      socket.on("send-message", (payload) => {
+      socket.on("message:send", (payload) => {
         try {
           expect(payload).toHaveProperty("name");
           expect(payload).toHaveProperty("message");

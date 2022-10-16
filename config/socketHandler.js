@@ -1,7 +1,7 @@
-const socketHandler = (socket) => {
-  socket.on("send-message", (payload) => {
-    socket.emit("send-message", payload);
-  });
-};
+module.exports = (io, socket) => {
+  const sendMessage = (payload) => {
+    socket.emit("message:send", payload);
+  };
 
-module.exports = socketHandler;
+  socket.on("message:send", sendMessage);
+};

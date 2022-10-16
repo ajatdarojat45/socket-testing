@@ -11,7 +11,11 @@ const io = new Server(server, {
   },
 });
 
-io.on("connection", socketHandler);
+const onConnection = (socket) => {
+  socketHandler(io, socket);
+};
+
+io.on("connection", onConnection);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
